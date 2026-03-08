@@ -1,0 +1,53 @@
+{
+  "vehicle_tracking": {
+    "vehicle_source": {
+      "type": "local_file",
+      "path": "75_US_Vehicles_2025.xlsx",
+      "description": "Can be 'local_file' or 'google_drive'"
+    },
+    "output_file": "vehicle_pricing_tracker.xlsx",
+    "model_years": [2026, 2025, 2024],
+    "scraper_settings": {
+      "delay_between_requests": 2.0,
+      "timeout_seconds": 10,
+      "retry_attempts": 3
+    }
+  },
+  "google_drive": {
+    "enabled": false,
+    "credentials_file": "credentials.json",
+    "token_file": "token.pickle",
+    "vehicle_filename": "75_US_Vehicles_2025"
+  },
+  "excel_settings": {
+    "include_header_styling": true,
+    "auto_adjust_columns": true,
+    "freeze_panes": true,
+    "comments": {
+      "description": "Excel tracker includes weekly sheets with vehicle pricing data",
+      "columns": [
+        "Make - Vehicle manufacturer",
+        "Model - Vehicle model name",
+        "Trim - Most popular trim for that model",
+        "MSRP - Manufacturer Suggested Retail Price",
+        "Invoice - Dealer invoice price",
+        "Destination Fee - Delivery and handling fees",
+        "Model Year - Model year of the vehicle",
+        "Capture Date - Date when data was captured"
+      ]
+    }
+  },
+  "scheduling": {
+    "enabled": false,
+    "frequency": "weekly",
+    "day_of_week": "Monday",
+    "time": "08:00",
+    "description": "Set up with cron (Linux/Mac) or Task Scheduler (Windows)"
+  },
+  "data_comparison": {
+    "compare_by_model_year": true,
+    "compare_by_trim": true,
+    "calculate_price_trends": true,
+    "calculate_year_over_year_change": true
+  }
+}
